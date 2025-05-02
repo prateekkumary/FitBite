@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../types/navigation'; // adjust the path as needed
+
 import {
   View,
   Text,
@@ -16,6 +20,9 @@ const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [hidePassword, setHidePassword] = useState(true);
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
+
 
   return (
     <View style={styles.container}>
@@ -65,14 +72,14 @@ const LoginScreen = () => {
       </TouchableOpacity>
 
       {/* Login Button with Gradient */}
-      <TouchableOpacity style={styles.loginButton}>
-        <LinearGradient
-          colors={['#FF6F00', '#FFA726']} // Kesariya shades
-          style={styles.gradient}>
-          <Text style={styles.loginText}>Login</Text>
-        </LinearGradient>
-        
-      </TouchableOpacity>
+      <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('Home')}>
+  <LinearGradient
+    colors={['#FF6F00', '#FFA726']}
+    style={styles.gradient}>
+    <Text style={styles.loginText}>Login</Text>
+  </LinearGradient>
+</TouchableOpacity>
+
       <Text style={styles.footerText}>Don’t have an account? Sign up</Text>
       
 
